@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: IoT2Eval
+
+  # ── Supabase / PostgreSQL ──────────────────────────────────────
+  # Replace with your actual Supabase project credentials
+  # Format: jdbc:postgresql://db.<project-ref>.supabase.co:5432/postgres
+  datasource:
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    username: ${DB_USERNAME}
+    # Required for Supabase SSL
+    hikari:
+      maximum-pool-size: "5"
+      connection-test-query: SELECT 1
+    url: ${DB_URL}
+
+  # ── JPA ──────────────────────────────────────────────────────
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: "true"
+    hibernate:
+      ddl-auto: validate
+    show-sql: "false"
+
+# ── Server ───────────────────────────────────────────────────
+server:
+  port: "8080"
+
+  # Long timeout for SSE connections
+  mvc:
+    async:
+      request-timeout: "3600000"
+
+# ── CORS — allow ESP32 + Vue frontend ─────────────────────────
+app:
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:5173}

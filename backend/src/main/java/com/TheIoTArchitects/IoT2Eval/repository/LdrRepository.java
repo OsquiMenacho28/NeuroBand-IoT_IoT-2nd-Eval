@@ -1,0 +1,18 @@
+package com.TheIoTArchitects.IoT2Eval.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.TheIoTArchitects.IoT2Eval.model.LdrReading;
+
+public interface LdrRepository extends JpaRepository<LdrReading, Long> {
+    List<LdrReading> findAllByOrderByRecordedAtAsc();
+
+    List<LdrReading> findByDeviceIdOrderByRecordedAtAsc(String deviceId);
+
+    @Query("SELECT r FROM LdrReading r ORDER BY r.recordedAt DESC LIMIT :n")
+    List<LdrReading> findLatest(@Param("n") int n);
+}

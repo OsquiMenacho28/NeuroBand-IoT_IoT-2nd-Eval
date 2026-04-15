@@ -1,0 +1,31 @@
+# ── Environment / Secrets ──────────────────────────────────
+.env
+.env.local
+.env.production
+*.env
+
+# ── ESP32_MicroPython ──────────────────────────────────
+config.py
+
+# ── Backend ─────────────────────────────────────────────────
+backend/target/
+backend/.mvn/
+*.class
+*.jar
+*.war
+
+# ── Frontend ─────────────────────────────────────────────────
+frontend/node_modules/
+frontend/dist/
+
+# ── MicroPython / ESP32 ──────────────────────────────────────
+# No compiled artifacts, but ignore editor files
+__pycache__/
+*.pyc
+
+# ── IDEs ─────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.iml
+*.suo
+*.user
